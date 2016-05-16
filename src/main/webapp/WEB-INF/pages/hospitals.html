@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head></head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="content">
+			<div class="about text-center container">
+				<div class="row" th:each="hospital:${hospitals}"
+					th:object="${hospital}">
+					<div class="col-md-4 col-sm-6 col-lg-4 col-xs-6">
+						<div class="single-about-detail">
+							<div class="about-img">
+								<a href="#" th:href="@{|/hospital/${hospital.id}|}"> <img
+									class="img-responsive" src="/"
+									th:src="@{|/img/hospitals/${hospital.imagePath}|}" />
+								</a>
+							</div>
+							<div class="about-details" href="#"
+								th:href="@{|/hospital/${hospital.id}|}">
+								<div class="pentagon-text">
+									<h1 th:text="${#strings.substring(hospital.name,0,1)} " />
+								</div>
+								<h3 th:text="*{name}" />
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+						<div class="card panel panel-default text-xs-right">
+							<h3 class="panel-heading" th:text="|About ${hospital.name}|" />
+							<h5 class="panel-body" th:text="${hospital.description}" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
